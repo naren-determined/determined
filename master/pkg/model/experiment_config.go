@@ -77,6 +77,9 @@ func (e ExperimentConfig) Validate() []error {
 			case param.CategoricalHyperparameter != nil:
 				p := param.CategoricalHyperparameter
 				mult = len(p.Vals)
+            case param.NestedHyperparameter != nil:
+                p := param.NestedHyperparameter
+                mult = len(p.Vals)
 			}
 			gridTrials *= mult
 		})

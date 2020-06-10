@@ -35,6 +35,14 @@ func sampleOne(h model.Hyperparameter, rand *nprand.State) interface{} {
 	case h.CategoricalHyperparameter != nil:
 		p := h.CategoricalHyperparameter
 		return p.Vals[rand.Intn(len(p.Vals))]
+	case h.NestedHyperparameter != nil:
+		p := h.NestedHyperparameter
+        m := make(map[string]interface{})
+        for key, value := range p.Vals {
+		    // m[key] = sampleOne(value, rand)
+		    m[key] = value
+        }
+        return m
 	default:
 		panic(fmt.Sprintf("unexpected hyperparameter type: %+v", h))
 	}

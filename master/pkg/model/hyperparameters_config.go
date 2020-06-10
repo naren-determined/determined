@@ -30,6 +30,7 @@ type Hyperparameter struct {
 	DoubleHyperparameter      *DoubleHyperparameter      `union:"type,double" json:"-"`
 	LogHyperparameter         *LogHyperparameter         `union:"type,log" json:"-"`
 	CategoricalHyperparameter *CategoricalHyperparameter `union:"type,categorical" json:"-"`
+	NestedHyperparameter      *NestedHyperparameter      `union:"type,nested" json:"-"`
 }
 
 // MarshalJSON implements the json.Marshaler interface.
@@ -111,6 +112,18 @@ type CategoricalHyperparameter struct {
 
 // Validate implements the check.Validatable interface.
 func (h *CategoricalHyperparameter) Validate() []error {
+	return []error{
+		check.GreaterThan(len(h.Vals), 0, "must have at least one category"),
+	}
+}
+
+// NestedHyperparameter is a nested dictionary of hyperparameters.
+type NestedHyperparameter struct {
+	Vals map[string]interface{} `json:"vals"`
+}
+
+// Validate implements the check.Validatable interface.
+func (h *NestedHyperparameter) Validate() []error {
 	return []error{
 		check.GreaterThan(len(h.Vals), 0, "must have at least one category"),
 	}

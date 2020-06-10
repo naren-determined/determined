@@ -61,6 +61,19 @@ def Categorical(vals: List[Any]) -> Dict:
     """
     return {"type": "categorical", "vals": vals}
 
+def Nested(vals: Dict[str, Any]) -> Dict:
+    """
+    A hyperparameter configuration over a nested dictionary of values.
+
+    Arguments:
+        vals:
+            A nested dictionary of JSON-serializable values (int, float, str,
+            or some combination of those types)
+
+    Returns:
+        A dictionary representing the configuration.
+    """
+    return {"type": "nested", "vals": vals}
 
 def Log(minval: float, maxval: float, base: int = 10) -> Any:
     """

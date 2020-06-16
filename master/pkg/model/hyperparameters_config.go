@@ -119,7 +119,7 @@ func (h *CategoricalHyperparameter) Validate() []error {
 
 // NestedHyperparameter is a nested dictionary of hyperparameters.
 type NestedHyperparameter struct {
-	Vals map[string]interface{} `json:"vals"`
+	Vals map[string]Hyperparameter `json:"vals"`
 }
 
 // Validate implements the check.Validatable interface.

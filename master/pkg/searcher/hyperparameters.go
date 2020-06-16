@@ -36,11 +36,10 @@ func sampleOne(h model.Hyperparameter, rand *nprand.State) interface{} {
 		p := h.CategoricalHyperparameter
 		return p.Vals[rand.Intn(len(p.Vals))]
 	case h.NestedHyperparameter != nil:
-		p := h.NestedHyperparameter
+        p := h.NestedHyperparameter
         m := make(map[string]interface{})
         for key, value := range p.Vals {
-		    // m[key] = sampleOne(value, rand)
-		    m[key] = value
+            m[key] = sampleOne(value, rand)
         }
         return m
 	default:

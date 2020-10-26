@@ -29,8 +29,8 @@ hyperparameter configurations in a principled fashion.
 asynchronous search functionality more suitable for large-scale HP
 search experiments in the distributed setting.
 
-Synchronous Searchers
-=====================
+Synchronous Searchers - To be deprecated
+=========================================
 
 Determined also offers two synchronous adaptive searchers that differ in
 their level of configurability.
